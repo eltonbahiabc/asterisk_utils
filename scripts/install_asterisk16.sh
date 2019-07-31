@@ -2,14 +2,14 @@
 
 echo -e "\033[1;32mSet hostname type:\033[0m"
 read hostname;
-hostnamectl set-hostname $hostname
+hostnamectl set-hostname ${hostname}
 
 echo -e "\033[1;32m\033[0m"
 
 echo -e "\033[1;32mUpdating repository\033[0m"
 if ! yum -y update
 then
-    echo -e "\033[1;31m Update Error\033[0m"
+    echo -e "\033[1;31mUpdate Error\033[0m"
     exit 1
 fi
 echo -e "\033[1;32mSuccessfully Updated\033[0m"
@@ -19,7 +19,7 @@ echo -e "\033[1;32m\033[0m"
 echo -e "\033[1;32mAdding EPEL repository\033[0m"
 if ! yum -y install epel-release
 then
-    echo -e "\033[1;31m Added Error\033[0m"
+    echo -e "\033[1;31mAdded Error\033[0m"
     exit 1
 fi
 echo -e "\033[1;32mSuccessfully Added\033[0m"
@@ -35,7 +35,7 @@ echo -e "\033[1;32m\033[0m"
 echo -e "\033[1;32mInstalling all required dependencies\033[0m"
 if ! yum -y install wget vim net-tools
 then
-    echo -e "\033[1;31m Installation Error\033[0m"
+    echo -e "\033[1;31mInstallation Error\033[0m"
     exit 1
 fi
 echo -e "\033[1;32mSuccessfully Installation\033[0m"
@@ -45,23 +45,23 @@ echo -e "\033[1;32m\033[0m"
 echo -e "\033[1;32mInstalling Development Tools\033[0m"
 if ! yum -y groupinstall 'Development Tools'
 then
-    echo -e "\033[1;31m Installation Error\033[0m"
+    echo -e "\033[1;31mInstallation Error\033[0m"
     exit 1
 fi
-echo -e "\033[1;31m Installation Error\033[0m"
+echo -e "\033[1;31mInstallation Error\033[0m"
 
 echo -e "\033[1;32m\033[0m"
 
 echo -e "\033[1;32mInstalling Other Packages\033[0m"
 if ! yum -y install libedit-devel sqlite-devel psmisc gmime-devel ncurses-devel libtermcap-devel sox newt-devel libxml2-devel libtiff-devel audiofile-devel gtk2-devel uuid-devel libtool libuuid-devel subversion kernel-devel kernel-devel-$(uname -r) git subversion kernel-devel crontabs cronie cronie-anacron wget vim
 then
-    echo -e "\033[1;31m Installation Error\033[0m"
+    echo -e "\033[1;31mInstallation Error\033[0m"
     exit 1
 fi
-echo -e "\033[1;31m Installation Error\033[0m"
+echo -e "\033[1;31mInstallation Error\033[0m"
 
 echo -e "\033[1;32m\033[0m"
-echo -e "\033[1;32minstalling JANSSON\033[0m"
+echo -e "\033[1;32mInstalling JANSSON\033[0m"
 cd /usr/src/
 git clone https://github.com/akheron/jansson.git
 cd jansson
@@ -70,7 +70,7 @@ autoreconf  -i
 make && make install
 
 echo -e "\033[1;32m\033[0m"
-echo -e "\033[1;32minstalling PJSIP\033[0m"
+echo -e "\033[1;32mInstalling PJSIP\033[0m"
 cd /usr/src/
 export VER="2.8"
 wget http://www.pjsip.org/release/${VER}/pjproject-${VER}.tar.bz2
@@ -92,12 +92,12 @@ cd asterisk-*
 ./configure --libdir=/usr/lib64
 
 echo -e "\033[1;32m\033[0m"
-echo -e "\033[1;32minstalling MP3 Source\033[0m"
+echo -e "\033[1;32mInstalling MP3 Source\033[0m"
 make menuselect
 contrib/scripts/get_mp3_source.sh
 
 echo -e "\033[1;32m\033[0m"
-echo -e "\033[1;32minstalling Asterisk\033[0m"
+echo -e "\033[1;32mInstalling Asterisk\033[0m"
 make
 make install
 make samples
