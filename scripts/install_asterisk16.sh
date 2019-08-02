@@ -123,3 +123,11 @@ echo -e "\033[1;32m\033[0m"
 echo -e "\033[1;32mRestarting and Enabling Asterisk on Startup\033[0m"
 systemctl restart asterisk
 systemctl enable asterisk
+
+echo -e "\033[1;32m\033[0m"
+echo -e "\033[1;32mDisabling Firewalld\033[0m"
+systemctl disable firewalld
+systemctl stop firewalld
+
+echo -e "\033[1;32m\033[0m"
+echo -e "\033[1;32mSuccessful Installation\033[0m"
